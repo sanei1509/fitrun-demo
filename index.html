@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FitRun Example — Demo para clientes</title>
+<meta name="description" content="Prototipo de demostración de FitRun: plataforma de gestión para escuelas y equipos de running. Versión escritorio y móvil, interactiva." />
+<meta property="og:title" content="FitRun Example — Demo interactiva" />
+<meta property="og:description" content="Plataforma de gestión para entrenadores y alumnos de running. Probá la demo en escritorio y móvil." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    color-scheme: dark;
+    --font-heading: 'Oswald', 'Montserrat', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+    --orange: #e8651e;
+    --orange-strong: #c4500f;
+    --orange-soft: #f59e3c;
+    --wa: #25d366;
+    --white: #fff;
+    --surface: rgba(19, 19, 19, 0.9);
+    --border: rgba(255, 255, 255, 0.12);
+    --border-strong: rgba(232, 101, 30, 0.45);
+    --muted: rgba(255, 255, 255, 0.68);
+    --soft: rgba(255, 255, 255, 0.5);
+    --radius-md: 16px; --radius-lg: 24px; --radius-pill: 999px;
+    --shadow-md: 0 24px 50px rgba(0, 0, 0, 0.28);
+    --shadow-glow: 0 0 0 1px rgba(232, 101, 30, 0.22), 0 18px 38px rgba(232, 101, 30, 0.18);
+  }
+  /* ====== EDITABLE: pega aquí la URL de la demo real interactiva ====== */
+  /* (se aplica al botón "Ir a la demo real") */
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: var(--font-body); color: var(--white);
+    background:
+      radial-gradient(circle at top left, rgba(232, 101, 30, 0.18), transparent 26%),
+      radial-gradient(circle at 80% 0%, rgba(232, 101, 30, 0.10), transparent 30%),
+      linear-gradient(180deg, #0b0b0b 0%, #121212 50%, #080808 100%);
+    background-attachment: fixed; -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  h1, h2, h3 { margin: 0; font-family: var(--font-heading); font-weight: 700; line-height: 1; text-transform: uppercase; letter-spacing: 0.02em; }
+  p { margin: 0; }
+  a { color: inherit; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== Topbar ===== */
+  .topbar { position: sticky; top: 0; z-index: 30; backdrop-filter: blur(10px); background: rgba(8,8,8,0.7); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .logo { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; position: relative; overflow: hidden; background: linear-gradient(135deg, var(--orange), var(--orange-soft)); box-shadow: 0 10px 26px rgba(232,101,30,0.32); }
+  .logo span { font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; color: #fff; z-index: 2; }
+  .logo::after { content: ''; position: absolute; left: -20%; bottom: -55%; width: 130%; height: 80%; border-radius: 50%; background: rgba(255,255,255,0.16); transform: rotate(-12deg); }
+  .brand .nm { display: grid; gap: 1px; }
+  .brand .eb { font-size: 0.62rem; letter-spacing: 0.22em; color: var(--orange); text-transform: uppercase; font-weight: 700; }
+  .brand .bn { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; }
+  .topbar-cta { display: flex; gap: 10px; }
+
+  /* ===== Buttons ===== */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0.8rem 1.3rem; border: 1px solid transparent; border-radius: var(--radius-pill); font-family: var(--font-heading); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.85rem; cursor: pointer; text-decoration: none; transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: linear-gradient(135deg, var(--orange), var(--orange-strong)); color: #fff; box-shadow: 0 12px 26px rgba(232,101,30,0.3); }
+  .btn-ghost { background: rgba(255,255,255,0.05); border-color: var(--border); color: #fff; }
+  .btn-ghost:hover { border-color: var(--border-strong); background: rgba(232,101,30,0.12); }
+  .btn-wa { background: var(--wa); color: #07321a; }
+  .btn-wa:hover { box-shadow: 0 12px 26px rgba(37,211,102,0.3); }
+  .btn .ic { width: 18px; height: 18px; display: inline-block; }
+
+  /* ===== Hero ===== */
+  .hero { padding: 70px 0 40px; display: grid; gap: 26px; }
+  .kicker { width: fit-content; display: inline-flex; align-items: center; gap: 8px; padding: 0.42rem 0.9rem; border: 1px solid var(--border-strong); border-radius: var(--radius-pill); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange-soft); background: rgba(232,101,30,0.08); }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); }
+  .hero h1 .accent { background: linear-gradient(120deg, var(--orange-soft), var(--orange)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .lead { max-width: 62ch; color: var(--muted); font-size: 1.08rem; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+  .note { font-size: 0.82rem; color: var(--soft); }
+
+  /* ===== Section ===== */
+  section { padding: 48px 0; }
+  .sec-head { display: grid; gap: 8px; margin-bottom: 28px; }
+  .sec-head h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+  .sec-head p { color: var(--muted); max-width: 60ch; }
+
+  /* ===== Device showcase ===== */
+  .device-tabs { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
+  .device-tab { cursor: pointer; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.78rem; padding: 0.6rem 1.1rem; border-radius: var(--radius-pill); border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--muted); }
+  .device-tab.active { color: #fff; border-color: var(--border-strong); background: rgba(232,101,30,0.16); }
+
+  .gallery { display: grid; gap: 26px; }
+  .gallery.desktop { grid-template-columns: 1fr; }
+  .shotcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-md); display: grid; gap: 14px; }
+  .shotcard .cap { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .shotcard .cap h3 { font-size: 1.05rem; }
+  .shotcard .cap .route { font-size: 0.66rem; color: var(--soft); font-family: var(--font-heading); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: var(--radius-pill); }
+  .shotcard img { width: 100%; height: auto; display: block; border-radius: 8px; }
+
+  .phones { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+  .phones .shotcard { padding: 16px; }
+  .phones img { max-width: 280px; margin: 0 auto; }
+  .hidden { display: none; }
+
+  /* ===== Features ===== */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .feat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; display: grid; gap: 10px; }
+  .feat .fi { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(232,101,30,0.14); border: 1px solid var(--border-strong); font-size: 1.3rem; }
+  .feat h3 { font-size: 1.05rem; }
+  .feat p { color: var(--muted); font-size: 0.9rem; }
+
+  /* ===== Contact ===== */
+  .contact-card { background: linear-gradient(135deg, rgba(232,101,30,0.16), transparent 60%), var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-glow); display: grid; gap: 22px; }
+  .contact-card h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  .contacts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .contact { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; border: 1px solid var(--border); border-radius: var(--radius-md); background: rgba(255,255,255,0.03); }
+  .contact .who { display: grid; gap: 3px; }
+  .contact .who .n { font-weight: 700; }
+  .contact .who .num { color: var(--muted); font-size: 0.92rem; }
+
+  /* ===== Footer ===== */
+  footer { padding: 40px 0 60px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 30px; }
+  footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; color: var(--soft); font-size: 0.85rem; }
+
+  .wa-ic { width: 20px; height: 20px; }
+  @media (max-width: 620px) {
+    .topbar-cta .btn span.lbl { display: none; }
+    .hero { padding-top: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Topbar ===== -->
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo"><span>FR</span></div>
+      <div class="nm"><span class="eb">Run Club · Demo</span><span class="bn">FitRun</span></div>
+    </div>
+    <div class="topbar-cta">
+      <a class="btn btn-ghost" href="#pantallas"><span class="lbl">Ver pantallas</span></a>
+      <a class="btn btn-primary" href="prototipo/index.html">Probar demo</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<div class="wrap">
+  <section class="hero">
+    <span class="kicker">Prototipo de demostración · Running Club</span>
+    <h1>La plataforma para tu <span class="accent">equipo de running</span></h1>
+    <p class="lead">FitRun conecta a entrenadores y alumnos en un solo lugar: planes de entrenamiento semanales, control de pagos y carnés de salud, carreras, comunicados y seguimiento del progreso. Esta es una <strong>demo de prueba</strong> — explorala en escritorio y en móvil.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="prototipo/index.html">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        Ir a la demo interactiva
+      </a>
+      <a class="btn btn-ghost" href="#pantallas">Ver las pantallas</a>
+      <!-- EDITABLE: reemplazá el href "#" por la URL de la app real cuando la tengas -->
+      <a class="btn btn-ghost" id="demoRealBtn" href="#" data-pending="true">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        Ir a la app real
+      </a>
+    </div>
+    <p class="note" id="demoRealNote">Demo interna navegable. El acceso a la app real se habilita a pedido — consultanos por WhatsApp.</p>
+  </section>
+</div>
+
+<!-- ===== Features ===== -->
+<div class="wrap">
+  <section>
+    <div class="sec-head">
+      <h2>Todo lo que tu club necesita</h2>
+      <p>Pensado para entrenadores que gestionan grupos y para alumnos que quieren saber qué entrenar hoy.</p>
+    </div>
+    <div class="features">
+      <div class="feat"><div class="fi">🗓️</div><h3>Planes semanales</h3><p>Crea planes por alumno, grupo o carrera, con semanas reutilizables y publicación programada.</p></div>
+      <div class="feat"><div class="fi">🏃</div><h3>Qué toca hoy</h3><p>Cada alumno ve su entrenamiento del día y marca su progreso. Felicitación al cerrar la semana.</p></div>
+      <div class="feat"><div class="fi">💳</div><h3>Pagos y cuotas</h3><p>Control de cuotas mensuales y bonos anuales, con estados y alertas de vencimiento.</p></div>
+      <div class="feat"><div class="fi">🏥</div><h3>Carné de salud</h3><p>Seguimiento de vencimientos: nadie corre una carrera sin la documentación al día.</p></div>
+      <div class="feat"><div class="fi">🏁</div><h3>Carreras</h3><p>Inscripción por turno, control de cupos y avisos de cancelación.</p></div>
+      <div class="feat"><div class="fi">📣</div><h3>Comunicados</h3><p>Avisos segmentados por grupo, con programación y vista previa para el alumno.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== Pantallas (galería) ===== -->
+<div class="wrap">
+  <section id="pantallas">
+    <div class="sec-head">
+      <h2>Las pantallas</h2>
+      <p>Mismo producto, dos experiencias: panel de gestión en escritorio y app para el alumno en el teléfono.</p>
+    </div>
+    <div class="device-tabs">
+      <button class="device-tab active" data-target="desktop">🖥️ Escritorio (Entrenador)</button>
+      <button class="device-tab" data-target="mobile">📱 Móvil (Alumno)</button>
+    </div>
+
+    <div class="gallery desktop" id="g-desktop">
+      <div class="shotcard"><div class="cap"><h3>Panel del Entrenador</h3><span class="route">/dashboard/admin</span></div><img src="assets/screens/mac-1-panel-entrenador.png" alt="Panel del entrenador" loading="lazy"></div>
+      <div class="shotcard"><div class="cap"><h3>Mi Panel (Alumno)</h3><span class="route">/panel/alumno</span></div><img src="assets/screens/mac-2-mi-panel-alumno.png" alt="Mi panel del alumno" loading="lazy"></div>
+      <div class="shotcard"><div class="cap"><h3>Planes &amp; Semanas</h3><span class="route">/admin/planes</span></div><img src="assets/screens/mac-3-planes-semanas.png" alt="Planes y semanas" loading="lazy"></div>
+      <div class="shotcard"><div class="cap"><h3>Pagos</h3><span class="route">/admin/pagos</span></div><img src="assets/screens/mac-4-pagos.png" alt="Pagos" loading="lazy"></div>
+      <div class="shotcard"><div class="cap"><h3>Carreras &amp; Comunicados</h3><span class="route">/admin/eventos</span></div><img src="assets/screens/mac-5-carreras-comunicados.png" alt="Carreras y comunicados" loading="lazy"></div>
+    </div>
+
+    <div class="gallery phones hidden" id="g-mobile">
+      <div class="shotcard"><div class="cap"><h3>Panel</h3></div><img src="assets/screens/iphone-1-panel-entrenador.png" alt="Panel móvil" loading="lazy"></div>
+      <div class="shotcard"><div class="cap"><h3>Mi Panel</h3></div><img src="assets/screens/iphone-2-mi-panel-alumno.png" alt="Mi panel móvil" loading="lazy"></div>
+      <div class="shotcard"><div class="cap"><h3>Plan semanal</h3></div><img src="assets/screens/iphone-3-plan-semanal.png" alt="Plan semanal móvil" loading="lazy"></div>
+      <div class="shotcard"><div class="cap"><h3>Mis Pagos</h3></div><img src="assets/screens/iphone-4-mis-pagos.png" alt="Mis pagos móvil" loading="lazy"></div>
+      <div class="shotcard"><div class="cap"><h3>Carreras</h3></div><img src="assets/screens/iphone-5-carreras.png" alt="Carreras móvil" loading="lazy"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== Contacto ===== -->
+<div class="wrap">
+  <section id="contacto">
+    <div class="contact-card">
+      <div>
+        <h2>¿Querés esta plataforma para tu club?</h2>
+        <p style="color:var(--muted);margin-top:8px;max-width:60ch;">Escribinos por WhatsApp y coordinamos una demo personalizada con tus datos reales.</p>
+      </div>
+      <div class="contacts">
+        <div class="contact">
+          <div class="who"><span class="n">Santiago Neira</span><span class="num">+598 91 274 380</span></div>
+          <a class="btn btn-wa" href="https://wa.me/59891274380?text=Hola%20Santiago%2C%20vi%20la%20demo%20de%20FitRun%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener">
+            <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.738-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <div class="contact">
+          <div class="who"><span class="n">Cesar Martinez</span><span class="num">+598 94 469 680</span></div>
+          <a class="btn btn-wa" href="https://wa.me/59894469680?text=Hola%20Cesar%2C%20vi%20la%20demo%20de%20FitRun%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener">
+            <svg class="wa-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.738-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>FitRun Example · Prototipo de demostración. Marca y datos ficticios.</span>
+    <span>Hecho para presentación a clientes.</span>
+  </div>
+</footer>
+
+<script>
+  // Tabs escritorio / móvil
+  document.querySelectorAll('.device-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.device-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const t = tab.dataset.target;
+      document.getElementById('g-desktop').classList.toggle('hidden', t !== 'desktop');
+      document.getElementById('g-mobile').classList.toggle('hidden', t !== 'mobile');
+    });
+  });
+
+  // Botón "app real": si sigue pendiente, lleva a WhatsApp en vez de a "#"
+  const realBtn = document.getElementById('demoRealBtn');
+  if (realBtn && realBtn.dataset.pending === 'true') {
+    realBtn.setAttribute('href', 'https://wa.me/59891274380?text=Hola%2C%20quiero%20acceder%20a%20la%20demo%20real%20de%20FitRun.');
+    realBtn.setAttribute('target', '_blank');
+    realBtn.setAttribute('rel', 'noopener');
+  }
+</script>
+</body>
+</html>

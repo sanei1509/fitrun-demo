@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FitRun Example — Mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ===== Tokens reales (src/styles/index.css) ===== */
+  :root {
+    /* ===== Lucide icon data-URIs (auto-generated) ===== */
+    --i-dashboard: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='9' x='3' y='3' rx='1'/%3E%3Crect width='7' height='5' x='14' y='3' rx='1'/%3E%3Crect width='7' height='9' x='14' y='12' rx='1'/%3E%3Crect width='7' height='5' x='3' y='16' rx='1'/%3E%3C/svg%3E");
+    --i-inbox: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='22 12 16 12 14 15 10 15 8 12 2 12'/%3E%3Cpath d='M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z'/%3E%3C/svg%3E");
+    --i-users: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M22 21v-2a4 4 0 0 0-3-3.87'/%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'/%3E%3C/svg%3E");
+    --i-folder: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/%3E%3C/svg%3E");
+    --i-flag: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z'/%3E%3Cline x1='4' x2='4' y1='22' y2='15'/%3E%3C/svg%3E");
+    --i-map: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z'/%3E%3Cpath d='M15 5.764v15'/%3E%3Cpath d='M9 3.236v15'/%3E%3C/svg%3E");
+    --i-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 2v4'/%3E%3Cpath d='M16 2v4'/%3E%3Crect width='18' height='18' x='3' y='4' rx='2'/%3E%3Cpath d='M3 10h18'/%3E%3Cpath d='M8 14h.01'/%3E%3Cpath d='M12 14h.01'/%3E%3Cpath d='M16 14h.01'/%3E%3Cpath d='M8 18h.01'/%3E%3Cpath d='M12 18h.01'/%3E%3Cpath d='M16 18h.01'/%3E%3C/svg%3E");
+    --i-card: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='14' x='2' y='5' rx='2'/%3E%3Cline x1='2' x2='22' y1='10' y2='10'/%3E%3C/svg%3E");
+    --i-megaphone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 11 18-5v12L3 14v-3z'/%3E%3Cpath d='M11.6 16.8a3 3 0 1 1-5.8-1.6'/%3E%3C/svg%3E");
+    --i-home: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpolyline points='9 22 9 12 15 12 15 22'/%3E%3C/svg%3E");
+    --i-footprints: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z'/%3E%3Cpath d='M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z'/%3E%3Cpath d='M16 17h4'/%3E%3Cpath d='M4 13h4'/%3E%3C/svg%3E");
+    --i-settings: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+    --i-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='4' x2='20' y1='6' y2='6'/%3E%3Cline x1='4' x2='20' y1='12' y2='12'/%3E%3Cline x1='4' x2='20' y1='18' y2='18'/%3E%3C/svg%3E");
+    --i-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --i-alert: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3Cpath d='M12 9v4'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E");
+    --i-heart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z'/%3E%3Cpath d='M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27'/%3E%3C/svg%3E");
+    --i-zap: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z'/%3E%3C/svg%3E");
+
+    color-scheme: dark;
+    --font-heading: 'Oswald', 'Montserrat', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+    --color-red: #e8651e;
+    --color-orange: #e18c4b;
+    --color-white: #fff;
+    --color-gray-50: #f5f5f5;
+    --color-surface-card: rgba(19, 19, 19, 0.9);
+    --color-surface-elevated: #1e1e1e;
+    --color-border: rgba(255, 255, 255, 0.12);
+    --color-border-strong: rgba(232, 101, 30, 0.45);
+    --color-text: #fff;
+    --color-text-muted: rgba(255, 255, 255, 0.68);
+    --color-text-soft: rgba(255, 255, 255, 0.5);
+    --color-primary-strong: #c4500f;
+    --color-success: #2fb36f;
+    --color-warning: #ffb020;
+    --color-danger: #ff5a5f;
+    --color-info: #48a7ff;
+    --color-action-destructive: #ff5a5f;
+    --color-action-destructive-border: rgba(255, 90, 95, 0.45);
+    --color-action-neutral: var(--color-orange);
+    --color-action-neutral-border: rgba(225, 140, 75, 0.45);
+    --space-8: 0.5rem; --space-10: 0.625rem; --space-12: 0.75rem; --space-16: 1rem;
+    --space-20: 1.25rem; --space-24: 1.5rem; --space-32: 2rem;
+    --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; --radius-xl: 32px; --radius-pill: 999px;
+    --shadow-md: 0 24px 50px rgba(0, 0, 0, 0.28);
+    --shadow-glow: 0 0 0 1px rgba(232, 101, 30, 0.22), 0 18px 38px rgba(232, 101, 30, 0.18);
+    --transition-fast: 140ms ease;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background:
+      radial-gradient(circle at top left, rgba(232, 101, 30, 0.16), transparent 24%),
+      linear-gradient(180deg, #090909 0%, #121212 45%, #080808 100%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { margin: 0; font-family: var(--font-heading); font-weight: 700; line-height: 1; text-transform: uppercase; letter-spacing: 0.02em; }
+  p { margin: 0; }
+
+  /* ===== Galería ===== */
+  .gallery-head { max-width: 1320px; margin: 0 auto; padding: 40px 24px 6px; }
+  .gallery-head .kicker { margin-bottom: 14px; }
+  .gallery-head h1 { font-size: 2.6rem; }
+  .gallery-head p { color: var(--color-text-muted); margin-top: 10px; max-width: 70ch; }
+  .toc {
+    position: sticky; top: 0; z-index: 40;
+    display: flex; flex-wrap: wrap; gap: 8px;
+    max-width: 1320px; margin: 14px auto 0; padding: 14px 24px;
+    background: rgba(9, 9, 9, 0.86); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .toc a {
+    text-decoration: none; color: var(--color-text-muted);
+    font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.74rem;
+    padding: 0.55rem 0.95rem; border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border); background: rgba(255,255,255,0.04);
+    transition: all 140ms ease;
+  }
+  .toc a:hover { color: #fff; border-color: var(--color-border-strong); background: rgba(232,101,30,0.14); }
+
+  .screen-block { max-width: 1320px; margin: 0 auto; padding: 30px 24px 10px; scroll-margin-top: 80px; }
+  .screen-cap {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .screen-cap .n {
+    font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .screen-cap .route {
+    font-size: 0.74rem; color: var(--color-text-soft); font-family: var(--font-heading); letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem; border: 1px solid var(--color-border); border-radius: var(--radius-pill);
+  }
+
+  /* ===== App shell (fiel a MainLayout.module.css) ===== */
+  .shell {
+    display: grid; grid-template-columns: 300px 1fr;
+    min-height: 720px;
+    border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(232, 101, 30, 0.05), transparent 30%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 24%), #0a0a0a;
+    box-shadow: var(--shadow-md);
+  }
+  .sidebar {
+    display: grid; grid-template-rows: auto 1fr; gap: var(--space-24);
+    padding: var(--space-32) var(--space-24);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 20%),
+      linear-gradient(180deg, #0c0c0c 0%, #121212 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .brandBlock { display: grid; gap: var(--space-8); }
+  .brandTop { display: flex; align-items: center; gap: 12px; }
+  .logoMark { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; position: relative; overflow: hidden; background: linear-gradient(135deg, var(--color-red), var(--color-orange)); box-shadow: 0 10px 26px rgba(232,101,30,0.3); }
+  .logoMark span { font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; color: #fff; letter-spacing: 0.02em; z-index: 2; }
+  .logoMark::after { content: ''; position: absolute; left: -20%; bottom: -55%; width: 130%; height: 80%; border-radius: 50%; background: rgba(255,255,255,0.16); transform: rotate(-12deg); }
+  .brandText { display: grid; gap: 2px; }
+  .brandEyebrow { color: var(--color-red); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+  .brand { max-width: 11ch; color: var(--color-white); font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; line-height: 0.98; letter-spacing: 0.03em; text-transform: uppercase; opacity: 0.84; }
+  .roleBadge { width: fit-content; padding: 0.45rem 0.8rem; border: 1px solid rgba(232, 101, 30, 0.24); border-radius: var(--radius-pill); background: rgba(232, 101, 30, 0.08); color: var(--color-red); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .nav { display: grid; gap: var(--space-8); align-content: start; }
+  .link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0.95rem 1rem; border: 1px solid transparent; border-radius: var(--radius-md);
+    color: var(--color-text-muted); text-decoration: none;
+    font-size: 0.86rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase;
+    transition: all var(--transition-fast);
+  }
+  /* ===== Lucide icons via CSS mask (tinted with currentColor) ===== */
+  .ic, .i { display:inline-block; vertical-align:middle; flex:0 0 auto; width:18px; height:18px; background-color:currentColor; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; -webkit-mask-position:center; mask-position:center; -webkit-mask-size:contain; mask-size:contain; }
+  .alert-row .ic { width:20px; height:20px; }
+  .chev .ic { width:14px; height:14px; }
+  .logoMark .ic { width:24px; height:24px; background-color:#fff; }
+  .ic-dashboard{-webkit-mask-image:var(--i-dashboard);mask-image:var(--i-dashboard);}
+  .ic-inbox{-webkit-mask-image:var(--i-inbox);mask-image:var(--i-inbox);}
+  .ic-users{-webkit-mask-image:var(--i-users);mask-image:var(--i-users);}
+  .ic-folder{-webkit-mask-image:var(--i-folder);mask-image:var(--i-folder);}
+  .ic-flag{-webkit-mask-image:var(--i-flag);mask-image:var(--i-flag);}
+  .ic-map{-webkit-mask-image:var(--i-map);mask-image:var(--i-map);}
+  .ic-calendar{-webkit-mask-image:var(--i-calendar);mask-image:var(--i-calendar);}
+  .ic-card{-webkit-mask-image:var(--i-card);mask-image:var(--i-card);}
+  .ic-megaphone{-webkit-mask-image:var(--i-megaphone);mask-image:var(--i-megaphone);}
+  .ic-home{-webkit-mask-image:var(--i-home);mask-image:var(--i-home);}
+  .ic-footprints{-webkit-mask-image:var(--i-footprints);mask-image:var(--i-footprints);}
+  .ic-settings{-webkit-mask-image:var(--i-settings);mask-image:var(--i-settings);}
+  .ic-menu{-webkit-mask-image:var(--i-menu);mask-image:var(--i-menu);}
+  .ic-chevron{-webkit-mask-image:var(--i-chevron);mask-image:var(--i-chevron);}
+  .ic-alert{-webkit-mask-image:var(--i-alert);mask-image:var(--i-alert);}
+  .ic-heart{-webkit-mask-image:var(--i-heart);mask-image:var(--i-heart);}
+  .ic-zap{-webkit-mask-image:var(--i-zap);mask-image:var(--i-zap);}
+  .link .cnt { margin-left: auto; }
+  .link:hover { color: var(--color-white); background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.08); transform: translateX(4px); }
+  .link.active {
+    background: linear-gradient(135deg, rgba(232, 101, 30, 0.35), rgba(232, 101, 30, 0.14)), rgba(255, 255, 255, 0.05);
+    border-color: rgba(232, 101, 30, 0.45); color: var(--color-white); box-shadow: var(--shadow-glow);
+  }
+  .studentNote { margin-top: 0.45rem; padding: 0.95rem 1rem; border: 1px solid rgba(225, 140, 75, 0.16); border-radius: var(--radius-md); background: rgba(225, 140, 75, 0.06); color: var(--color-text-soft); font-size: 0.82rem; line-height: 1.45; }
+
+  .mainColumn { display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+  .header {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-20);
+    padding: var(--space-32) var(--space-32) var(--space-24);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent), rgba(0, 0, 0, 0.12);
+  }
+  .headerLead { display: grid; align-content: center; gap: 0.45rem; flex: 1 1 460px; min-width: 320px; }
+  .eyebrow { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(232, 101, 30, 0.76); }
+  .title { font-size: 2.6rem; color: var(--color-white); }
+  .subtitle { max-width: 58ch; color: var(--color-text-muted); line-height: 1.45; font-size: 0.95rem; }
+  .headerActions { display: flex; align-items: center; gap: var(--space-16); }
+  .profileMenu {
+    display: flex; align-items: center; gap: var(--space-8); min-height: 52px;
+    padding: 0.55rem 0.8rem; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.045);
+  }
+  .accountAvatar { width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: linear-gradient(135deg, rgba(232, 101, 30, 0.95), rgba(225, 140, 75, 0.86)); color: #fff; font-size: 0.9rem; font-weight: 800; box-shadow: 0 10px 26px rgba(232, 101, 30, 0.24); }
+  .accountMeta { display: grid; gap: 0.1rem; }
+  .accountRole { color: var(--color-white); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+  .accountName { color: var(--color-text-muted); font-size: 0.74rem; }
+  .chev { color: rgba(225, 140, 75, 0.88); font-size: 0.7rem; }
+  .content { padding: var(--space-32); display: grid; gap: var(--space-24); }
+
+  /* ===== Card real (ui/Card.module.css) ===== */
+  .card {
+    position: relative; overflow: hidden; display: grid; gap: var(--space-16);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 35%), var(--color-surface-card);
+    border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-24);
+    box-shadow: var(--shadow-md);
+  }
+  .card::before { content: ''; position: absolute; inset: 0 auto auto 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--color-red), var(--color-orange), transparent); }
+  .card.highlight { border-color: var(--color-border-strong); box-shadow: var(--shadow-glow); }
+  .card .c-title { color: var(--color-white); font-size: 1.35rem; line-height: 1.05; }
+  .card.plain::before { display: none; }
+
+  .muted { color: var(--color-text-muted); }
+  .soft { color: var(--color-text-soft); }
+
+  /* ===== Badge real (ui/Badge.module.css) ===== */
+  .badge { display: inline-flex; align-items: center; justify-content: center; min-height: 32px; padding: 0.42rem 0.82rem; border: 1px solid transparent; border-radius: var(--radius-pill); font-size: 0.71rem; font-weight: 800; line-height: 1.1; letter-spacing: 0.08em; text-transform: uppercase; }
+  .badge.activo { background: rgba(47,179,111,0.14); border-color: rgba(47,179,111,0.34); color: #caffdf; }
+  .badge.inactivo { background: rgba(232,101,30,0.14); border-color: rgba(232,101,30,0.34); color: #ffc2c2; }
+  .badge.pendiente { background: rgba(255,176,32,0.14); border-color: rgba(255,176,32,0.3); color: #ffe3a4; }
+  .badge.pago { background: rgba(225,140,75,0.14); border-color: rgba(225,140,75,0.36); color: #ffd3ae; }
+  .badge.info { background: rgba(72,167,255,0.14); border-color: rgba(72,167,255,0.34); color: #cfe7ff; }
+  .badge.neutral { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14); color: var(--color-white); }
+
+  /* ===== Button real (ui/Button.module.css) ===== */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-8); min-height: 46px; border: 1px solid transparent; border-radius: var(--radius-pill); font: inherit; font-weight: 800; line-height: 1; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; padding: 0.8rem 1.2rem; font-size: 0.9rem; }
+  .btn.primary { background: linear-gradient(135deg, var(--color-red), #c4500f); color: #fff; box-shadow: 0 12px 24px rgba(232, 101, 30, 0.24); }
+  .btn.secondary { background: rgba(0,0,0,0.88); border-color: rgba(232,101,30,0.56); color: #fff; }
+  .btn.positive { border-color: rgba(57,201,120,0.24); background: linear-gradient(135deg, rgba(57,201,120,0.1), rgba(25,88,58,0.18)), rgba(12,24,19,0.94); color: #fff; box-shadow: 0 8px 18px rgba(18,54,36,0.22); }
+  .btn.destructive { background: rgba(255,90,95,0.08); border-color: var(--color-action-destructive-border); color: var(--color-action-destructive); }
+  .btn.neutral2 { background: rgba(225,140,75,0.08); border-color: var(--color-action-neutral-border); color: var(--color-action-neutral); }
+  .btn.sm { min-height: 38px; padding: 0.5rem 0.85rem; font-size: 0.7rem; }
+
+  /* ===== Layouts internos ===== */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-20); }
+  .stat .bar { width: 34px; height: 4px; border-radius: 4px; margin-bottom: 10px; }
+  .stat .label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted); }
+  .stat .value { font-family: var(--font-heading); font-size: 2.1rem; margin: 6px 0 2px; }
+  .stat .sub { font-size: 0.74rem; color: var(--color-text-soft); }
+  .split { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-24); }
+
+  .alert-row { display: flex; align-items: center; gap: 12px; padding: 0.85rem 0.95rem; border-radius: 14px; margin-bottom: 10px; border: 1px solid var(--color-border); background: rgba(255,255,255,0.04); }
+  .alert-row:last-child { margin-bottom: 0; }
+  .alert-row.warn { border-color: rgba(255,176,32,0.35); background: rgba(255,176,32,0.1); }
+  .alert-row.dang { border-color: rgba(255,90,95,0.35); background: rgba(255,90,95,0.1); }
+  .alert-row.info { border-color: rgba(72,167,255,0.35); background: rgba(72,167,255,0.1); }
+  .alert-row .ic { font-size: 1.15rem; }
+  .alert-row .t1 { font-weight: 700; font-size: 0.92rem; }
+  .alert-row .t2 { font-size: 0.78rem; color: var(--color-text-muted); }
+
+  .chart { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; height: 180px; margin-top: 6px; }
+  .chart .col { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; height: 100%; justify-content: flex-end; }
+  .chart .cbar { width: 100%; max-width: 34px; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, var(--color-orange), var(--color-red)); }
+  .chart .m { font-size: 0.72rem; color: var(--color-text-soft); }
+
+  .table-shell { overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: rgba(255,255,255,0.03); }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 0.9rem 1.05rem; text-align: left; font-size: 0.88rem; }
+  th { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); background: rgba(255,255,255,0.04); }
+  td { border-top: 1px solid rgba(255,255,255,0.06); color: var(--color-gray-50); }
+  tbody tr:hover { background: rgba(255,255,255,0.035); }
+  .row-name { display: flex; align-items: center; gap: 10px; }
+  .mini-av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg,rgba(232,101,30,0.95),rgba(225,140,75,0.86)); display:grid;place-items:center;font-size:0.7rem;font-weight:800; }
+
+  /* Alumno hero */
+  .hero-today { display: grid; gap: 16px; padding: 1.8rem; border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(232,101,30,0.28), rgba(225,140,75,0.14)), var(--color-surface-card); border: 1px solid var(--color-border-strong); box-shadow: var(--shadow-glow); }
+  .hero-today .big { font-family: var(--font-heading); font-size: 2.6rem; }
+  .metrics { display: flex; gap: 26px; flex-wrap: wrap; }
+  .metrics .m .k { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); }
+  .metrics .m .v { font-family: var(--font-heading); font-size: 1.6rem; }
+
+  .statusStrip { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-16); }
+  .statusCard { display: grid; gap: var(--space-8); min-height: 120px; padding: 1.1rem 1.2rem; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); background: rgba(255,255,255,0.03); }
+  .statusCard .lbl { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); }
+
+  .progress { height: 9px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
+  .progress > i { display: block; height: 100%; background: linear-gradient(90deg, var(--color-orange), var(--color-success)); }
+
+  /* Week */
+  .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+  .day { border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 0.8rem; min-height: 150px; display: flex; flex-direction: column; gap: 8px; background: rgba(255,255,255,0.025); }
+  .day.done { border-color: rgba(47,179,111,0.4); background: rgba(47,179,111,0.08); }
+  .day.editing { border-color: rgba(232,101,30,0.45); background: rgba(232,101,30,0.08); }
+  .day.rest { opacity: 0.55; }
+  .day .dn { font-family: var(--font-heading); text-transform: uppercase; font-size: 0.74rem; letter-spacing: 0.08em; color: var(--color-text-muted); }
+  .day .tt { font-weight: 700; font-size: 0.86rem; }
+  .day .dt { font-size: 0.74rem; color: var(--color-text-soft); }
+  .day .chk { margin-top: auto; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+  .day .chk.ok { color: var(--color-success); }
+  .day .chk.pend { color: var(--color-text-soft); }
+
+  .weektabs { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .weektabs .badge { min-height: 0; border-radius: var(--radius-sm); padding: 0.4rem 0.7rem; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-24); }
+  .list-item { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 0; border-top: 1px solid rgba(255,255,255,0.07); }
+  .list-item:first-child { border-top: none; }
+  .field-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-soft); margin-bottom: 6px; }
+  .fake-input { padding: 0.85rem 1rem; border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-md); background: rgba(255,255,255,0.04); }
+  .phone { width: 290px; border-radius: 30px; border: 1px solid var(--color-border); background: #0b0b0b; padding: 14px; box-shadow: var(--shadow-md); }
+
+  @media (max-width: 1024px) { .shell { grid-template-columns: 260px 1fr; } }
+  @media (max-width: 920px) {
+    .shell { grid-template-columns: 1fr; }
+    .sidebar { grid-template-rows: auto; }
+    .nav { grid-auto-flow: row; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .split, .grid-2 { grid-template-columns: 1fr; }
+    .week, .statusStrip { grid-template-columns: repeat(2, 1fr); }
+    .title { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+
+
+<div class="gallery-head">
+  <span class="kicker badge" style="border-color:rgba(232,101,30,0.3);background:rgba(232,101,30,0.08);color:var(--color-red);letter-spacing:0.14em;">Mockups · UI fiel al sistema</span>
+  <h1>FitRun Example</h1>
+  <p>Las 5 pantallas del sistema, renderizadas de forma estática con datos de ejemplo. Replican el layout, los componentes (Card con barra superior, Badge, Button pill, sidebar 300px) y la paleta/tipografía reales del frontend.</p>
+</div>
+
+<nav class="toc">
+  <a href="#s1">① Panel Entrenador</a>
+  <a href="#s2">② Mi Panel (Alumno)</a>
+  <a href="#s3">③ Planes &amp; Semanas</a>
+  <a href="#s4">④ Pagos</a>
+  <a href="#s5">⑤ Carreras &amp; Comunicados</a>
+</nav>
+
+<!-- ===================== 1 · PANEL ENTRENADOR ===================== -->
+<section class="screen-block" id="s1">
+  <div class="screen-cap"><span class="n">① Panel del Entrenador</span><span class="route">/dashboard/admin</span></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brandBlock">
+        <div class="brandTop">
+          <div class="logoMark"><span>FR</span></div>
+          <div class="brandText">
+            <span class="brandEyebrow">Run Club · Demo</span>
+            <span class="brand">FitRun</span>
+          </div>
+        </div>
+        <span class="roleBadge">Entrenador</span>
+      </div>
+      <nav class="nav">
+        <a class="link active"><span class="ic ic-dashboard"></span> Panel</a>
+        <a class="link"><span class="ic ic-inbox"></span> Solicitudes <span class="cnt badge pendiente sm" style="min-height:24px;padding:.2rem .55rem;">5</span></a>
+        <a class="link"><span class="ic ic-users"></span> Alumnos</a>
+        <a class="link"><span class="ic ic-folder"></span> Grupos</a>
+        <a class="link"><span class="ic ic-flag"></span> Eventos/Carreras</a>
+        <a class="link"><span class="ic ic-map"></span> Control Planificación</a>
+        <a class="link"><span class="ic ic-calendar"></span> Planes</a>
+        <a class="link"><span class="ic ic-card"></span> Pagos</a>
+        <a class="link"><span class="ic ic-megaphone"></span> Comunicados</a>
+      </nav>
+    </aside>
+    <div class="mainColumn">
+      <header class="header">
+        <div class="headerLead">
+          <span class="eyebrow">Panel del entrenador</span>
+          <h1 class="title">Buenos días, Coach</h1>
+          <p class="subtitle">Resumen general del equipo: alumnos, cobros, próximas carreras y alertas que requieren tu atención hoy.</p>
+        </div>
+        <div class="headerActions">
+          <div class="profileMenu"><span class="accountAvatar">CA</span><span class="accountMeta"><span class="accountRole">Entrenador</span><span class="accountName">Carlos Acuña</span></span><span class="chev"><span class="ic ic-chevron"></span></span></div>
+        </div>
+      </header>
+      <div class="content">
+        <div class="stats">
+          <div class="card plain stat"><div class="bar" style="background:var(--color-success)"></div><div class="label">Alumnos activos</div><div class="value">48</div><div class="sub">+3 este mes</div></div>
+          <div class="card plain stat"><div class="bar" style="background:var(--color-warning)"></div><div class="label">Registros pendientes</div><div class="value">5</div><div class="sub">requieren revisión</div></div>
+          <div class="card plain stat"><div class="bar" style="background:var(--color-info)"></div><div class="label">Próximos eventos</div><div class="value">2</div><div class="sub">en 14 días</div></div>
+          <div class="card plain stat"><div class="bar" style="background:var(--color-orange)"></div><div class="label">Ingresos del mes</div><div class="value">$312k</div><div class="sub">+12% vs. mayo</div></div>
+        </div>
+        <div class="split">
+          <div class="card">
+            <h3 class="c-title">Alertas</h3>
+            <div>
+              <div class="alert-row warn"><span class="ic ic-alert"></span><div><div class="t1">3 carnés de salud por vencer</div><div class="t2">Revisar antes del 5 de julio</div></div></div>
+              <div class="alert-row dang"><span class="ic ic-card"></span><div><div class="t1">7 cuotas pendientes de pago</div><div class="t2">$84.000 por cobrar</div></div></div>
+              <div class="alert-row dang"><span class="ic ic-heart"></span><div><div class="t1">2 alumnos sin carné cargado</div><div class="t2">Bloquea inscripción a carreras</div></div></div>
+              <div class="alert-row info"><span class="ic ic-calendar"></span><div><div class="t1">5 alumnos sin plan asignado</div><div class="t2">Semana del 30/06</div></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="c-title">Ingresos · 6 meses</h3>
+            <div class="chart">
+              <div class="col"><div class="cbar" style="height:55%"></div><div class="m">Ene</div></div>
+              <div class="col"><div class="cbar" style="height:45%"></div><div class="m">Feb</div></div>
+              <div class="col"><div class="cbar" style="height:70%"></div><div class="m">Mar</div></div>
+              <div class="col"><div class="cbar" style="height:52%"></div><div class="m">Abr</div></div>
+              <div class="col"><div class="cbar" style="height:82%"></div><div class="m">May</div></div>
+              <div class="col"><div class="cbar" style="height:96%"></div><div class="m">Jun</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="c-title">Últimos entrenamientos cargados</h3>
+          <div class="table-shell" style="box-shadow:none;border-radius:var(--radius-md);">
+            <table>
+              <thead><tr><th>Alumno</th><th>Fecha</th><th>Tipo</th><th>Distancia</th><th>Ritmo</th></tr></thead>
+              <tbody>
+                <tr><td><div class="row-name"><span class="mini-av">MA</span> Martín Álvarez</div></td><td>29/06</td><td>Series</td><td>7.2 km</td><td>4:10/km</td></tr>
+                <tr><td><div class="row-name"><span class="mini-av">LF</span> Lucía Fernández</div></td><td>28/06</td><td>Fondo</td><td>16 km</td><td>5:20/km</td></tr>
+                <tr><td><div class="row-name"><span class="mini-av">JR</span> Javier Ruiz</div></td><td>28/06</td><td>Tempo</td><td>10 km</td><td>4:32/km</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2 · MI PANEL (ALUMNO) ===================== -->
+<section class="screen-block" id="s2">
+  <div class="screen-cap"><span class="n">② Mi Panel (Alumno)</span><span class="route">/panel/alumno</span></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brandBlock">
+        <div class="brandTop">
+          <div class="logoMark"><span>FR</span></div>
+          <div class="brandText">
+            <span class="brandEyebrow">Run Club · Demo</span>
+            <span class="brand">FitRun</span>
+          </div>
+        </div>
+        <span class="roleBadge" style="border-color:rgba(255,255,255,0.14);background:rgba(255,255,255,0.06);color:#fff;">Alumno</span>
+      </div>
+      <nav class="nav">
+        <a class="link active"><span class="ic ic-home"></span> Mi Panel</a>
+        <a class="link"><span class="ic ic-calendar"></span> Mi Plan Semanal</a>
+        <a class="link"><span class="ic ic-flag"></span> Carreras</a>
+        <a class="link"><span class="ic ic-footprints"></span> Mis Entrenamientos</a>
+        <a class="link"><span class="ic ic-card"></span> Mis Pagos</a>
+        <a class="link"><span class="ic ic-settings"></span> Mi Cuenta</a>
+        <div class="studentNote">Recuerda mantener tu carné de salud al día para poder inscribirte a las carreras.</div>
+      </nav>
+    </aside>
+    <div class="mainColumn">
+      <header class="header">
+        <div class="headerLead">
+          <span class="eyebrow">Mi Panel</span>
+          <h1 class="title">¡A correr, Martín!</h1>
+          <p class="subtitle">Esto es lo que toca hoy según tu plan. Marca tus entrenamientos para llevar el seguimiento de tu progreso.</p>
+        </div>
+        <div class="headerActions">
+          <div class="profileMenu"><span class="accountAvatar">MA</span><span class="accountMeta"><span class="accountRole">Alumno</span><span class="accountName">Martín Álvarez</span></span><span class="chev"><span class="ic ic-chevron"></span></span></div>
+        </div>
+      </header>
+      <div class="content">
+        <div class="statusStrip">
+          <div class="statusCard" style="border-color:rgba(255,176,32,0.28);background:linear-gradient(135deg,rgba(255,176,32,0.1),transparent 70%),rgba(255,255,255,0.03);">
+            <span class="lbl">Estado de cuota</span>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;"><strong style="font-family:var(--font-heading);font-size:1.3rem;">Vence 5/07</strong><span class="badge pendiente">Pendiente</span></div>
+            <span class="soft" style="font-size:0.82rem;">$12.000 · modalidad mensual</span>
+          </div>
+          <div class="statusCard" style="border-color:rgba(47,179,111,0.28);background:linear-gradient(135deg,rgba(47,179,111,0.1),transparent 70%),rgba(255,255,255,0.03);">
+            <span class="lbl">Carné de salud</span>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;"><strong style="font-family:var(--font-heading);font-size:1.3rem;">Vigente</strong><span class="badge activo">OK</span></div>
+            <span class="soft" style="font-size:0.82rem;">Válido hasta 12/2026</span>
+          </div>
+        </div>
+
+        <div class="hero-today">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+            <span class="badge inactivo">Hoy · Lunes 29/06</span>
+            <span class="badge activo">Semana 3 de 8</span>
+          </div>
+          <div class="big">Series 8 × 400m</div>
+          <p class="muted">Trote suave 15′ · 8 repeticiones a ritmo 4:10/km con pausa 90″ · vuelta a la calma 10′.</p>
+          <div class="metrics">
+            <div class="m"><div class="k">Distancia</div><div class="v">7.2 km</div></div>
+            <div class="m"><div class="k">Ritmo objetivo</div><div class="v">4:10/km</div></div>
+            <div class="m"><div class="k">Duración</div><div class="v">~42 min</div></div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <button class="btn positive">✓ Marcar día como realizado</button>
+            <button class="btn secondary">Ver plan completo</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="c-title">Mi progreso semanal</h3>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span class="muted">4 de 6 entrenamientos</span><strong>67%</strong></div>
+            <div class="progress"><i style="width:67%"></i></div>
+            <p class="soft" style="font-size:0.84rem;">¡Vas muy bien! Te faltan 2 sesiones para cerrar la semana 🎉</p>
+          </div>
+          <div class="card">
+            <h3 class="c-title">Próximas carreras</h3>
+            <div class="list-item"><div><strong>10K Ciudad</strong><div class="soft" style="font-size:0.8rem;">12 de julio · Parque Central</div></div><span class="badge activo">Inscrito</span></div>
+            <div class="list-item"><div><strong>Maratón de Otoño</strong><div class="soft" style="font-size:0.8rem;">21K · 9 de agosto</div></div><span class="badge info">Abierta</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3 · PLANES & SEMANAS ===================== -->
+<section class="screen-block" id="s3">
+  <div class="screen-cap"><span class="n">③ Planes &amp; Semanas</span><span class="route">/admin/planes</span></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brandBlock">
+        <div class="brandTop">
+          <div class="logoMark"><span>FR</span></div>
+          <div class="brandText">
+            <span class="brandEyebrow">Run Club · Demo</span>
+            <span class="brand">FitRun</span>
+          </div>
+        </div>
+        <span class="roleBadge">Entrenador</span>
+      </div>
+      <nav class="nav">
+        <a class="link"><span class="ic ic-dashboard"></span> Panel</a>
+        <a class="link"><span class="ic ic-users"></span> Alumnos</a>
+        <a class="link"><span class="ic ic-flag"></span> Eventos/Carreras</a>
+        <a class="link"><span class="ic ic-map"></span> Control Planificación</a>
+        <a class="link active"><span class="ic ic-calendar"></span> Planes</a>
+        <a class="link"><span class="ic ic-card"></span> Pagos</a>
+        <a class="link"><span class="ic ic-megaphone"></span> Comunicados</a>
+      </nav>
+    </aside>
+    <div class="mainColumn">
+      <header class="header">
+        <div class="headerLead">
+          <span class="eyebrow">Planes de entrenamiento</span>
+          <h1 class="title">Plan: Base 10K</h1>
+          <p class="subtitle">Alcance: <strong>Grupo Mañana</strong> · 01/06 → 27/07 · Objetivo: completar 10K en menos de 50′.</p>
+        </div>
+        <div class="headerActions">
+          <button class="btn secondary">Copiar semana anterior</button>
+          <button class="btn primary">Publicar semana</button>
+        </div>
+      </header>
+      <div class="content">
+        <div class="weektabs">
+          <span class="badge activo">Sem 1 ✓</span>
+          <span class="badge activo">Sem 2 ✓</span>
+          <span class="badge inactivo">Sem 3 · en edición</span>
+          <span class="badge pendiente">Sem 4 · borrador</span>
+          <span class="badge neutral" style="opacity:.5;">Sem 5</span>
+          <span class="badge neutral" style="opacity:.5;">Sem 6</span>
+          <span class="badge neutral" style="opacity:.5;">Sem 7</span>
+          <span class="badge neutral" style="opacity:.5;">Sem 8</span>
+        </div>
+
+        <div class="card highlight">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+            <h3 class="c-title">Semana 3 · 15 al 21 de junio</h3>
+            <span class="badge pendiente">Borrador — se publica 14/06</span>
+          </div>
+          <div class="week">
+            <div class="day done"><div class="dn">Lun</div><div class="tt">Series 8×400</div><div class="dt">7.2 km · 4:10</div><div class="chk ok">✓ Hecho</div></div>
+            <div class="day done"><div class="dn">Mar</div><div class="tt">Regenerativo</div><div class="dt">5 km suave</div><div class="chk ok">✓ Hecho</div></div>
+            <div class="day"><div class="dn">Mié</div><div class="tt">Fartlek</div><div class="dt">8 km variado</div><div class="chk pend">Pendiente</div></div>
+            <div class="day"><div class="dn">Jue</div><div class="tt">Fuerza + core</div><div class="dt">45 min gym</div><div class="chk pend">Pendiente</div></div>
+            <div class="day"><div class="dn">Vie</div><div class="tt">Tempo</div><div class="dt">10 km · 4:30</div><div class="chk pend">Pendiente</div></div>
+            <div class="day"><div class="dn">Sáb</div><div class="tt">Fondo largo</div><div class="dt">16 km z2</div><div class="chk pend">Pendiente</div></div>
+            <div class="day rest"><div class="dn">Dom</div><div class="tt">Descanso</div><div class="dt">—</div><div class="chk pend">Libre</div></div>
+          </div>
+          <p class="soft" style="font-size:0.84rem;">Notas del entrenador: priorizar técnica en las series; si llueve, mover el fondo al domingo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4 · PAGOS ===================== -->
+<section class="screen-block" id="s4">
+  <div class="screen-cap"><span class="n">④ Pagos</span><span class="route">/admin/pagos</span></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brandBlock">
+        <div class="brandTop">
+          <div class="logoMark"><span>FR</span></div>
+          <div class="brandText">
+            <span class="brandEyebrow">Run Club · Demo</span>
+            <span class="brand">FitRun</span>
+          </div>
+        </div>
+        <span class="roleBadge">Entrenador</span>
+      </div>
+      <nav class="nav">
+        <a class="link"><span class="ic ic-dashboard"></span> Panel</a>
+        <a class="link"><span class="ic ic-users"></span> Alumnos</a>
+        <a class="link"><span class="ic ic-calendar"></span> Planes</a>
+        <a class="link active"><span class="ic ic-card"></span> Pagos</a>
+        <a class="link"><span class="ic ic-megaphone"></span> Comunicados</a>
+      </nav>
+    </aside>
+    <div class="mainColumn">
+      <header class="header">
+        <div class="headerLead">
+          <span class="eyebrow">Cuotas y pagos</span>
+          <h1 class="title">Pagos · Junio 2026</h1>
+          <p class="subtitle">Control de cuotas mensuales y bonos anuales. Acredita o cancela pagos y revisa el estado de cada alumno.</p>
+        </div>
+        <div class="headerActions">
+          <button class="btn primary">+ Registrar pago</button>
+        </div>
+      </header>
+      <div class="content">
+        <div class="stats" style="grid-template-columns:repeat(3,1fr);">
+          <div class="card plain stat"><div class="bar" style="background:var(--color-success)"></div><div class="label">Cobrado</div><div class="value">$312k</div><div class="sub">41 alumnos al día</div></div>
+          <div class="card plain stat"><div class="bar" style="background:var(--color-danger)"></div><div class="label">Pendiente</div><div class="value">$84k</div><div class="sub">7 cuotas</div></div>
+          <div class="card plain stat"><div class="bar" style="background:var(--color-orange)"></div><div class="label">Bono anual</div><div class="value">12</div><div class="sub">socios al día</div></div>
+        </div>
+        <div class="table-shell">
+          <table>
+            <thead><tr><th>Alumno</th><th>Modalidad</th><th>Importe</th><th>Vencimiento</th><th>Estado</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><div class="row-name"><span class="mini-av">MA</span> Martín Álvarez</div></td><td>Mensual</td><td>$12.000</td><td>05/07</td><td><span class="badge activo">Pagado</span></td><td><span class="soft">⋯</span></td></tr>
+              <tr><td><div class="row-name"><span class="mini-av">LF</span> Lucía Fernández</div></td><td>Mensual</td><td>$12.000</td><td>03/07</td><td><span class="badge pendiente">Pendiente</span></td><td><button class="btn positive sm">Acreditar</button></td></tr>
+              <tr><td><div class="row-name"><span class="mini-av">JR</span> Javier Ruiz</div></td><td>Anual</td><td>$120.000</td><td>—</td><td><span class="badge pago">Bono anual</span></td><td><span class="soft">⋯</span></td></tr>
+              <tr><td><div class="row-name"><span class="mini-av">SP</span> Sofía Páez</div></td><td>Mensual</td><td>$12.000</td><td>01/07</td><td><span class="badge pendiente">Pendiente</span></td><td><button class="btn positive sm">Acreditar</button></td></tr>
+              <tr><td><div class="row-name"><span class="mini-av">DG</span> Diego Gómez</div></td><td>Mensual</td><td>Exento</td><td>—</td><td><span class="badge neutral">Becado</span></td><td><span class="soft">⋯</span></td></tr>
+              <tr><td><div class="row-name"><span class="mini-av">VC</span> Valentina Cruz</div></td><td>Mensual</td><td>$12.000</td><td>10/07</td><td><span class="badge inactivo">Fallido</span></td><td><button class="btn neutral2 sm">Reintentar</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5 · CARRERAS & COMUNICADOS ===================== -->
+<section class="screen-block" id="s5">
+  <div class="screen-cap"><span class="n">⑤ Carreras &amp; Comunicados</span><span class="route">/admin/eventos · /admin/comunicados</span></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brandBlock">
+        <div class="brandTop">
+          <div class="logoMark"><span>FR</span></div>
+          <div class="brandText">
+            <span class="brandEyebrow">Run Club · Demo</span>
+            <span class="brand">FitRun</span>
+          </div>
+        </div>
+        <span class="roleBadge">Entrenador</span>
+      </div>
+      <nav class="nav">
+        <a class="link"><span class="ic ic-dashboard"></span> Panel</a>
+        <a class="link active"><span class="ic ic-flag"></span> Eventos/Carreras</a>
+        <a class="link"><span class="ic ic-megaphone"></span> Comunicados</a>
+        <a class="link"><span class="ic ic-card"></span> Pagos</a>
+      </nav>
+    </aside>
+    <div class="mainColumn">
+      <header class="header">
+        <div class="headerLead">
+          <span class="eyebrow">Carreras &amp; comunicados</span>
+          <h1 class="title">Eventos</h1>
+          <p class="subtitle">Crea carreras, controla inscriptos por turno y envía comunicados segmentados a tus grupos.</p>
+        </div>
+        <div class="headerActions">
+          <button class="btn primary">+ Nueva carrera</button>
+        </div>
+      </header>
+      <div class="content">
+        <div class="grid-2">
+          <div style="display:grid;gap:var(--space-20);">
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div><h3 class="c-title">10K Ciudad</h3><p class="soft" style="font-size:.82rem;margin-top:4px;">12/07 · Parque Central · 10 km</p></div>
+                <span class="badge activo">Abierta</span>
+              </div>
+              <div style="display:flex;gap:22px;">
+                <div><div class="soft" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;">Inscritos</div><div style="font-family:var(--font-heading);font-size:1.4rem;">23</div></div>
+                <div><div class="soft" style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;">Turno</div><div style="font-family:var(--font-heading);font-size:1.4rem;">Mañana</div></div>
+              </div>
+            </div>
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div><h3 class="c-title">Maratón de Otoño</h3><p class="soft" style="font-size:.82rem;margin-top:4px;">09/08 · Costanera · 21 km</p></div>
+                <span class="badge pendiente">Borrador</span>
+              </div>
+              <p class="muted" style="font-size:.84rem;">Visible para los alumnos como “Próximamente”.</p>
+            </div>
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div><h3 class="c-title">5K Nocturna</h3><p class="soft" style="font-size:.82rem;margin-top:4px;">28/06 · 5 km</p></div>
+                <span class="badge inactivo">Cancelada</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card highlight">
+            <h3 class="c-title">Nuevo comunicado</h3>
+            <div><div class="field-label">Título</div><div class="fake-input">Cambio de horario por lluvia 🌧</div></div>
+            <div><div class="field-label">Mensaje</div><div class="fake-input muted">El entrenamiento de mañana se mueve a las 18:00 hs. ¡No falten!</div></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <span class="badge info">Audiencia: Grupo Tarde</span>
+              <span class="badge pendiente">Programado · 30/06 08:00</span>
+            </div>
+            <div class="field-label" style="margin-top:6px;">Vista previa (alumno)</div>
+            <div class="phone">
+              <div class="card" style="padding:1rem;border-radius:18px;box-shadow:none;">
+                <span class="badge inactivo">Comunicado</span>
+                <div style="font-family:var(--font-heading);font-size:1.1rem;text-transform:uppercase;">Cambio de horario por lluvia 🌧</div>
+                <p class="muted" style="font-size:.82rem;">El entrenamiento de mañana se mueve a las 18:00 hs. ¡No falten!</p>
+                <button class="btn primary" style="width:100%;">Ver mi plan</button>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <button class="btn secondary">Guardar borrador</button>
+              <button class="btn primary">Publicar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="max-width:1320px;margin:0 auto;padding:30px 24px 60px;color:var(--color-text-soft);font-size:0.82rem;">
+  Mockups estáticos · FitRun Example · paleta y componentes derivados de <code>AlMaximo_front/src/styles/index.css</code> y los módulos de UI.
+</footer>
+
+</body>
+</html>
